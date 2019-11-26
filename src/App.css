@@ -1,22 +1,83 @@
 .App {
-  text-align: center;
+	/* text-align: center; */
+	font-family: "Space Mono", monospace;
+	background-color: #191919;
+}
+* {
+	box-sizing: border-box;
+}
+/* body {
+	background: #222;
+	margin: 2em 20em;
+	box-sizing: border-box;
+} */
+.searchform {
+	display: block;
+	margin: 0;
+	overflow: hidden;
+	width: 50%;
+}
+label,
+input {
+	vertical-align: baseline;
+	color: #737373;
+}
+label {
+	margin: 0.125em 0.125em 0 0;
+	float: right;
+}
+input[type="search"] {
+	border: 2px solid #737373;
+	border-width: 0 0 3px;
+	background-color: transparent;
+	font: 22px "Space Mono", monospace;
+	padding: 0.125em 0.225em;
+	width: 85%;
+	float: left;
+}
+input[type="search"]:focus {
+	color: #e18728;
+	border-color: #e18728;
+	outline: none;
+}
+.CardImage {
+	width: 200px;
+	height: 300px;
+}
+.movie-list {
+	margin: 30px 167px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.movie-card:hover {
+	transition: all 0.4s ease-in-out;
+	box-shadow: -1px 3px 10px 5px black;
+	cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-}
+/* .addbtn {
+	width: 285px;
+	height: 300px;
+	margin-top: 20px;
+	font-size: large;
+} */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.coloredStars {
+	color: red;
 }
-
-.App-link {
-  color: #09d3ac;
+.blankStars {
+	color: black;
+}
+.stars {
+	color: black;
+	font-size: 30px;
+}
+.stars > span:hover {
+	color: red;
+	cursor: pointer;
+}
+.starsred {
+	color: red;
+	font-size: 30px;
 }
