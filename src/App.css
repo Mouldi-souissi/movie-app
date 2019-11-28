@@ -72,12 +72,39 @@ input[type="search"]:focus {
 .stars {
 	color: black;
 	font-size: 30px;
+	/* unicode-bidi: bidi-override;
+	direction: rtl; */
 }
 .stars > span:hover {
 	color: red;
 	cursor: pointer;
 }
+/* .stars > span:active:before,
+.stars > span:active ~ span:before {
+	content: "\2605";
+	position: absolute;
+	color: red;
+	cursor: pointer;
+} */
 .starsred {
 	color: red;
 	font-size: 30px;
+}
+.loader {
+	margin: 0 auto;
+	border: 16px solid #f3f3f3; /* Light grey */
+	border-top: 16px solid #3498db; /* Blue */
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

@@ -21,12 +21,15 @@ const Modalex = props => {
 					<input
 						type='text'
 						placeholder='title'
-						onChange={props.handlei}></input>
-
+						onChange={props.handlei1}></input>
 					<input
 						type='text'
 						placeholder='image url'
 						onChange={props.handlei2}></input>
+					<input
+						type='text'
+						placeholder='rating'
+						onChange={props.handlei3}></input>
 				</ModalBody>
 				<ModalFooter>
 					<Button color='primary' onClick={props.handleAdd}>

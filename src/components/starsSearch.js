@@ -27,14 +27,14 @@ export default class StarsSearch extends Component {
 	// 		rating: Number(e.target.id) + 1
 	// 	});
 	// };
-	handleblur = e => {
-		e.target.style.color = "black";
-	};
+	// handleblur = e => {
+	// 	e.target.style.color = "black";
+	// };
 	render() {
 		return (
 			<div className='stars' onClick={this.props.handleStarRating}>
 				{stars.split("").map((el, i) => (
-					<span key={i} id={i} onMouseLeave={this.handleblur}>
+					<span key={i} id={i}>
 						{el}
 					</span>
 				))}

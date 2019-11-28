@@ -30,9 +30,19 @@ export default class App extends Component {
 			],
 			input: "",
 			inputurl: "",
+			inputrate: "",
 			filtered: [],
-			starRating: 0
+			starRating: 0,
+			isLoading: true
 		};
+	}
+
+	componentDidMount() {
+		setTimeout(() => {
+			this.setState({
+				isLoading: false
+			});
+		}, 1000);
 	}
 	handleFilter = e => {
 		// e.preventDefault();
@@ -49,7 +59,7 @@ export default class App extends Component {
 		});
 	};
 
-	handlei = e => {
+	handlei1 = e => {
 		this.setState({
 			input: e.target.value
 		});
@@ -59,12 +69,21 @@ export default class App extends Component {
 			inputurl: e.target.value
 		});
 	};
+	handlei3 = e => {
+		this.setState({
+			inputrate: e.target.value
+		});
+	};
 
 	handleAdd = () => {
 		this.setState({
 			movies: [
 				...this.state.movies,
-				{ img: this.state.inputurl, title: this.state.input, desc: "" }
+				{
+					img: this.state.inputurl,
+					title: this.state.input,
+					rating: this.state.inputrate
+				}
 			]
 		});
 	};
@@ -89,7 +108,9 @@ export default class App extends Component {
 					filtered={this.state.filtered}
 					handlei={this.handlei}
 					handlei2={this.handlei2}
+					handlei3={this.handlei3}
 					handleAdd={this.handleAdd}
+					isLoading={this.state.isLoading}
 				/>
 			</div>
 		);
