@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Filter from "./components/Filter.js";
 import MovieList from "./components/Movie-list";
-import StarsSearch from "./components/starsSearch";
+// import StarsSearch from "./components/starsSearch";
+import BeautyStars from "beauty-stars";
 
 export default class App extends Component {
 	constructor() {
@@ -31,7 +32,8 @@ export default class App extends Component {
 			input: "",
 			inputurl: "",
 			inputrate: "",
-			filtered: [],
+			search: "",
+			searchstar: 0,
 			starRating: 0,
 			isLoading: true
 		};
@@ -45,17 +47,8 @@ export default class App extends Component {
 		}, 1000);
 	}
 	handleFilter = e => {
-		// e.preventDefault();
-		// filtered =
 		this.setState({
-			filtered: this.state.movies.filter(
-				// el => el.title.toLowerCase().trim().indexOf(e.toLowerCase().trim()) !== -1
-				el =>
-					el.title
-						.toLowerCase()
-						.trim()
-						.includes(e.target.value.toLowerCase().trim()) === true
-			)
+			search: e.target.value
 		});
 	};
 
@@ -93,19 +86,31 @@ export default class App extends Component {
 			: (e.target.style.color = "red");
 
 		this.setState({
-			filtered: this.state.movies.filter(
-				el => Number(el.rating) >= Number(e.target.id) + 1
-			)
+			searchstar: e.target.id
 		});
 	};
 	render() {
 		return (
 			<div className='App'>
 				<Filter handleFilter={this.handleFilter}></Filter>
-				<StarsSearch handleStarRating={this.handleStarRating} />
+				{/* <StarsSearch handleStarRating={this.handleStarRating} /> */}
+				<BeautyStars
+					value={this.state.searchstar}
+					onChange={value => this.setState({ searchstar: value })}
+					maxStars={10}
+					inactiveColor={"black"}
+					activeColor={"red"}
+					size={20}
+				/>
 				<MovieList
-					movies={this.state.movies}
-					filtered={this.state.filtered}
+					movies={this.state.movies.filter(
+						el =>
+							el.title
+								.toLowerCase()
+								.trim()
+								.includes(this.state.search.toLowerCase().trim()) === true &&
+							el.rating >= this.state.searchstar
+					)}
 					handlei={this.handlei}
 					handlei2={this.handlei2}
 					handlei3={this.handlei3}
