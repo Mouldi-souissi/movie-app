@@ -1,30 +1,31 @@
 import React, { Component } from "react";
 import MovieCard from "./Movie-card";
-import Modalex from "../Modalex";
-import HOCLoader from "./HOCLoader";
+
+// import HOCLoader from "./HOCLoader";
+import { connect } from "react-redux";
 
 export class MovieList extends Component {
 	render() {
+		let filtered = this.props.movies.filter(
+			el =>
+				el.title
+					.trim()
+					.toLocaleLowerCase()
+					.includes(this.props.x.trim().toLocaleLowerCase()) &&
+				el.rating >= this.props.star
+		);
 		return (
 			<div className='movie-list'>
-				{this.props.movies.map((el, key) => (
-					<MovieCard
-						key={key}
-						img={el.img}
-						title={el.title}
-						rating={el.rating}
-					/>
+				{filtered.map((el, key) => (
+					<MovieCard key={key} movies={el} />
 				))}
-				<div>
-					<Modalex
-						handlei={this.props.handlei}
-						handleAdd={this.props.handleAdd}
-						handlei2={this.props.handlei2}
-						handlei3={this.props.handlei3}></Modalex>
-				</div>
 			</div>
 		);
 	}
 }
-
-export default HOCLoader("isLoading")(MovieList);
+const mapStateToProps = state => ({
+	movies: state.movies,
+	x: state.x,
+	star: state.star
+});
+export default connect(mapStateToProps)(MovieList);

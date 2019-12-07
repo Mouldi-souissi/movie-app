@@ -2,14 +2,22 @@
 
 import React, { useState } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-
+import { addMovie } from "./store/actions/addMovie";
+import { connect } from "react-redux";
 const Modalex = props => {
 	const { buttonLabel, className } = props;
 
 	const [modal, setModal] = useState(false);
+	// mein state
+	const [title, setTitle] = useState("");
+	const [img, setimg] = useState("");
+	const [rating, setrating] = useState("");
 
 	const toggle = () => setModal(!modal);
 
+	const handleAdd = () => {
+		props.addMovie({ title, img, rating });
+	};
 	return (
 		<div>
 			<Button color='danger' onClick={toggle} className='addbtn'>
@@ -21,18 +29,24 @@ const Modalex = props => {
 					<input
 						type='text'
 						placeholder='title'
-						onChange={props.handlei1}></input>
+						onChange={e => {
+							setTitle(e.target.value);
+						}}></input>
 					<input
 						type='text'
 						placeholder='image url'
-						onChange={props.handlei2}></input>
+						onChange={e => {
+							setimg(e.target.value);
+						}}></input>
 					<input
 						type='text'
 						placeholder='rating'
-						onChange={props.handlei3}></input>
+						onChange={e => {
+							setrating(e.target.value);
+						}}></input>
 				</ModalBody>
 				<ModalFooter>
-					<Button color='primary' onClick={props.handleAdd}>
+					<Button color='primary' onClick={handleAdd}>
 						Add movie
 					</Button>{" "}
 					<Button color='secondary' onClick={toggle}>
@@ -44,4 +58,4 @@ const Modalex = props => {
 	);
 };
 
-export default Modalex;
+export default connect(null, { addMovie })(Modalex);

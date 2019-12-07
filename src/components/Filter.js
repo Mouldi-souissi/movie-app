@@ -1,30 +1,31 @@
 import React, { Component } from "react";
+import { search } from "../store/actions/search";
+import { connect } from "react-redux";
 
-export default class Filter extends Component {
-	// constructor() {
-	// 	super();
+class Filter extends Component {
+	constructor() {
+		super();
 
-	// 	this.state = {
-	// 		movie: ""
-	// 	};
-	// }
+		this.state = {
+			movie: ""
+		};
+	}
 
-	// handleChange = e => {
-	// 	this.setState({
-	// 		movie: e.target.value
-	// 	});
-	// };
-	// handlesubmit = e => {
-	// 	e.preventDefault();
-	// };
+	handleChange = e => {
+		this.props.movies.length === 0
+			? alert("No movies left")
+			: this.props.search(e.target.value);
+	};
+	handlesubmit = e => {
+		e.preventDefault();
+	};
 	render() {
 		return (
 			<form
 				className='searchform group'
 				onChange={this.props.handleFilter}
 				// onChange={() => this.props.handleFilter(this.state.movie)}
-				// onSubmit={this.handlesubmit}
-			>
+				onSubmit={this.handlesubmit}>
 				<label className='search-box'>
 					<span className='fa fa-2x fa-search'></span>
 				</label>
@@ -38,3 +39,7 @@ export default class Filter extends Component {
 		);
 	}
 }
+const mapStateToProps = state => ({
+	movies: state.movies
+});
+export default connect(mapStateToProps, { search })(Filter);

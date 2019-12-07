@@ -13,9 +13,9 @@
 } */
 .searchform {
 	display: block;
-	margin: 0;
 	overflow: hidden;
 	width: 50%;
+	margin-bottom: 20px;
 }
 label,
 input {
@@ -40,15 +40,15 @@ input[type="search"]:focus {
 	border-color: #e18728;
 	outline: none;
 }
-.CardImage {
-	width: 200px;
-	height: 300px;
-}
 .movie-list {
-	margin: 30px 167px;
+	margin: 30px 150px;
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
+}
+.movie.card {
+	width: 200px;
+	height: 300px;
 }
 .movie-card:hover {
 	transition: all 0.4s ease-in-out;
@@ -56,12 +56,14 @@ input[type="search"]:focus {
 	cursor: pointer;
 }
 
-/* .addbtn {
-	width: 285px;
-	height: 300px;
+.addbtn {
 	margin-top: 20px;
+	margin-left: 10px;
 	font-size: large;
-} */
+	width: 60px;
+	height: 60px;
+	position: absolute;
+}
 
 .coloredStars {
 	color: red;
@@ -69,27 +71,7 @@ input[type="search"]:focus {
 .blankStars {
 	color: black;
 }
-.stars {
-	color: black;
-	font-size: 30px;
-	/* unicode-bidi: bidi-override;
-	direction: rtl; */
-}
-.stars > span:hover {
-	color: red;
-	cursor: pointer;
-}
-/* .stars > span:active:before,
-.stars > span:active ~ span:before {
-	content: "\2605";
-	position: absolute;
-	color: red;
-	cursor: pointer;
-} */
-.starsred {
-	color: red;
-	font-size: 30px;
-}
+
 .loader {
 	margin: 0 auto;
 	border: 16px solid #f3f3f3; /* Light grey */
