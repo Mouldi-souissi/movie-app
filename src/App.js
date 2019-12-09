@@ -6,13 +6,15 @@ import BeautyStars from "beauty-stars";
 import { searchStar } from "./store/actions/searchStar";
 import { connect } from "react-redux";
 import Modalex from "./Modalex";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MovieDesc from "./MovieDesc";
+
 class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			searchstar: 0,
-			starRating: 0,
-			isLoading: true
+			searchstar: 0
+			// isLoading: true
 		};
 	}
 
@@ -29,22 +31,31 @@ class App extends Component {
 	};
 	render() {
 		return (
-			<div className='App'>
-				<Filter handleFilter={this.handleFilter}></Filter>
-				<BeautyStars
-					value={this.state.searchstar}
-					// onChange={value => this.setState({ searchstar: value })}
-					onChange={this.handlechange}
-					maxStars={10}
-					inactiveColor={"black"}
-					activeColor={"red"}
-					size={20}
-				/>
-
-				<Modalex></Modalex>
-
-				<MovieList />
-			</div>
+			<Router>
+				<Switch>
+					<div className='App'>
+						<Route path='/MovieDesc' component={MovieDesc}></Route>
+						<Route
+							exact
+							path='/'
+							component={() => (
+								<>
+									<Filter />
+									<BeautyStars
+										value={this.state.searchstar}
+										onChange={this.handlechange}
+										maxStars={10}
+										inactiveColor={"black"}
+										activeColor={"red"}
+										size={20}
+									/>
+									<Modalex />
+									<MovieList />
+								</>
+							)}></Route>
+					</div>
+				</Switch>
+			</Router>
 		);
 	}
 }

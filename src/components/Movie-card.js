@@ -5,11 +5,13 @@ import { removeMovie } from "../store/actions/removeMovie";
 import { editMovie } from "../store/actions/editMovie";
 import { connect } from "react-redux";
 import BeautyStars from "beauty-stars";
+import { showDesc } from "../store/actions/showDesc";
+import { Link } from "react-router-dom";
 
 class MovieCard extends Component {
 	state = {
 		isEditing: false,
-		searchstar: 0,
+		searchstar: this.props.movies.rating,
 		input: ""
 	};
 
@@ -58,7 +60,13 @@ class MovieCard extends Component {
 							<CardTitle>{this.props.movies.title}</CardTitle>
 						)}
 						<CardText></CardText>
-						<button>Show details</button>
+						<Link to='/MovieDesc'>
+							<button
+								onClick={() => this.props.showDesc(this.props.movies.title)}>
+								Show details
+							</button>
+						</Link>
+
 						<button
 							onClick={() =>
 								this.setState({ isEditing: !this.state.isEditing })
@@ -75,4 +83,4 @@ class MovieCard extends Component {
 		);
 	}
 }
-export default connect(null, { removeMovie, editMovie })(MovieCard);
+export default connect(null, { removeMovie, editMovie, showDesc })(MovieCard);

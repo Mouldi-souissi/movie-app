@@ -90,3 +90,6 @@ input[type="search"]:focus {
 		transform: rotate(360deg);
 	}
 }
+.desccard {
+	display: flex;
+}

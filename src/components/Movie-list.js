@@ -27,5 +27,8 @@ const mapStateToProps = state => ({
 	movies: state.movies,
 	x: state.x,
 	star: state.star
+	// newtitle: state.newtitle,
+	// newrating: state.newrating,
+	// seekedtitle: state.seekedtitle
 });
 export default connect(mapStateToProps)(MovieList);

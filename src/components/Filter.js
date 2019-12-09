@@ -3,14 +3,6 @@ import { search } from "../store/actions/search";
 import { connect } from "react-redux";
 
 class Filter extends Component {
-	constructor() {
-		super();
-
-		this.state = {
-			movie: ""
-		};
-	}
-
 	handleChange = e => {
 		this.props.movies.length === 0
 			? alert("No movies left")
@@ -21,11 +13,7 @@ class Filter extends Component {
 	};
 	render() {
 		return (
-			<form
-				className='searchform group'
-				onChange={this.props.handleFilter}
-				// onChange={() => this.props.handleFilter(this.state.movie)}
-				onSubmit={this.handlesubmit}>
+			<form className='searchform group' onSubmit={this.handlesubmit}>
 				<label className='search-box'>
 					<span className='fa fa-2x fa-search'></span>
 				</label>

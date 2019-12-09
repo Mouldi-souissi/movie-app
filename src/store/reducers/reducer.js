@@ -3,7 +3,8 @@ import {
 	SEARCH_STAR,
 	ADD_MOVIE,
 	REMOVE_MOVIE,
-	EDIT_MOVIE
+	EDIT_MOVIE,
+	SHOW_DESC
 } from "../actions/actionTypes";
 
 export const reducer = (state, action) => {
@@ -27,11 +28,12 @@ export const reducer = (state, action) => {
 				...state,
 				movies: state.movies.map(el =>
 					el.title === action.title
-						? { ...el, title: action.newtitle, rating: action.rating }
+						? { ...el, title: action.newtitle, rating: action.newrating }
 						: el
 				)
 			};
-
+		case SHOW_DESC:
+			return { ...state, titleDesc: action.title };
 		default:
 			return state;
 	}
